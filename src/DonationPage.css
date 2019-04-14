@@ -1,0 +1,85 @@
+@import url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.0.2/css/font-awesome.min.css");
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css");
+body {
+    font: 15px "Helvetica";
+}
+a {
+    display: inline-block;
+    margin: 20px;
+    position: relative;
+    text-decoration: none;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+
+.donate {
+    background: #00684d;
+    background: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, 0.4) 100%), -webkit-linear-gradient(left, #00b486 0%, #00684d 50%, #00b486 100%);
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.4) 100%), linear-gradient(to right, #00b486 0%, #00684d 50%, #00b486 100%);
+    background-position: 0 0;
+    background-size: 200% 100%;
+    border-radius: 4px;
+    color: #fff;
+    padding: 15px 65px 15px 15px;
+    text-shadow: 1px 1px 5px #666;
+    -webkit-transition: all 800ms;
+    transition: all 800ms;
+    margin: 20px 0;
+}
+.donate:after {
+    border-left: 1px solid #004f3a;
+    color: #003527;
+    content: "\f004";
+    font: 20px "FontAwesome";
+    padding: 10px 0;
+    padding-left: 15px;
+    position: absolute;
+    right: 16px;
+    top: 7px;
+    -webkit-transition: all 600ms 200ms;
+    transition: all 600ms 200ms;
+}
+.donate:hover {
+    background-position: -100% 0;
+}
+.donate:hover:after {
+    border-left: 1px solid #008260;
+    color: #fff;
+    text-shadow: 0 0 10px #000;
+}
+
+.form-control {
+    margin: 5px 0;
+}
+
+.error-message {
+    color: red;
+}
+
+.list-group-item:hover {
+    background-color: lightblue;
+}
+
+.searchbar {
+    width: 87%;
+    float:left;
+}
+
+button.show-all-stops {
+    margin: -12px 0 0 20px;
+}
+
+.selectedLabel {
+    margin-right: 90%;
+}
+
+label {
+    margin: 0;
+}

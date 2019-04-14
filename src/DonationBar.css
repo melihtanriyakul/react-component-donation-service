@@ -1,0 +1,19 @@
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css");
+
+.progress {
+    position:relative;
+    height:50px;
+    width: 100%;
+}
+.raised {
+    position:absolute;
+    left:5px;
+    top:9px;
+    height: 50px;
+}
+.goal {
+    position:absolute;
+    right:10px;
+    top:9px;
+    height: 50px;
+}
