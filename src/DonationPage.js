@@ -8,10 +8,9 @@ class DonationPage extends Component {
         super(props);
         this.state = {
             stops: [],
-            donationRaised: 0,
             currentDonation: 0,
             completedPercentage: 0,
-            selectedStopId: -1,
+            selectedStop: {},
             showAllClicked: false,
             fields: {
                 amount: true,
@@ -66,14 +65,10 @@ class DonationPage extends Component {
      * input and updates the bus stops in the state accordingly.
      * */
     filterStops = (e) => {
-        if (e.target.value !== "") {
-            let filteredStops = this.allStops.filter(city => city.name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1);
-            this.stopList.current.className = "list-group show";
-            this.setState({stops: filteredStops});
-        } else {
-            this.stopList.current.className = "list-group hide";
-            this.setState({stops: this.allStops});
-        }
+        let filteredStops = this.allStops.filter(city => city.name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1);
+        this.stopList.current.className = "list-group show";
+        this.donationContainer.current.className = "donation-container hide";
+        this.setState({stops: filteredStops});
     };
 
     /**
@@ -84,7 +79,8 @@ class DonationPage extends Component {
     calculateDonation = (e) => {
         if (e.target.value !== "") {
             const currentDonation = parseFloat(e.target.value);
-            const percentage = ((this.state.donationRaised + currentDonation) / 700) * 100;
+            const percentage = ((this.state.selectedStop.donationsRaisedInDollars + currentDonation) /
+                this.state.selectedStop.donationNeeded) * 100;
             this.setState({
                 currentDonation: currentDonation,
                 completedPercentage: percentage
@@ -116,12 +112,11 @@ class DonationPage extends Component {
         });
 
         const raisedDonation = selectedStop.donationsRaisedInDollars || 0;
-        const percentage = (raisedDonation / 700) * 100;
+        const percentage = (raisedDonation / selectedStop.donationNeeded) * 100;
 
         this.setState({
             showAllClicked: !this.state.showAllClicked,
-            selectedStopId: id,
-            donationRaised: raisedDonation,
+            selectedStop: selectedStop,
             completedPercentage: percentage
         })
     };
@@ -134,6 +129,7 @@ class DonationPage extends Component {
             this.stopList.current.className = "list-group hide";
         } else {
             this.stopList.current.className = "list-group show";
+            this.donationContainer.current.className = "donation-container hide";
         }
 
         this.setState({
@@ -199,7 +195,7 @@ class DonationPage extends Component {
         if (isDone) {
             while (!this.donationDone) {
                 try {
-                    this.props.busStopService.addDonation(this.state.selectedStopId, this.state.currentDonation);
+                    this.props.busStopService.addDonation(this.state.selectedStop.stopId, this.state.currentDonation);
                     this.donationDone = true;
                 } catch (e) {
                     console.log(e)
@@ -221,8 +217,7 @@ class DonationPage extends Component {
 
 
     render() {
-        const currentTotalDonation = this.state.donationRaised + this.state.currentDonation;
-        const currentPercentage = ((this.state.donationRaised + this.state.currentDonation) / 700) * 100;
+        const currentTotalDonation = this.state.selectedStop.donationsRaisedInDollars + this.state.currentDonation;
         let years = [];
         let months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
@@ -234,21 +229,23 @@ class DonationPage extends Component {
             <div className="container">
                 <h2>Stop List</h2>
                 <p>You can search the stops to donate:</p>
-                <input className="form-control searchbar" type="text" ref={this.searchBar} placeholder="Search for a stop"
+                <input className="form-control searchbar" type="text" ref={this.searchBar}
+                       placeholder="Search for a stop"
                        onChange={this.filterStops}/>
                 <br/>
-                <button type="button" className="btn btn-dark show-all-stops" onClick={this.handleShowAll}>Show All Stops</button>
+                <button type="button" className="btn btn-dark show-all-stops" onClick={this.handleShowAll}>Show All
+                    Stops
+                </button>
 
                 <ul className="list-group hide" ref={this.stopList} id="myList">
                     {this.state.stops.map((stop, index) => {
-                        const missingDonation = (700 - stop.donationsRaisedInDollars) > 0 ? (700 - stop.donationsRaisedInDollars) : 0;
-
-                        return <li className="list-group-item" key={index} id={stop.stopId}
-                            onClick={this.handleClick}>
-                            <p id={stop.stopId}>{stop.name}</p>
-                            <p id={stop.stopId} style={{float: "right", margin: -30, marginRight: 150}}>Raised: ${stop.donationsRaisedInDollars} - Still 
-                            missing: ${missingDonation}</p></li>
-                    }
+                            return <li className="list-group-item" key={index} id={stop.stopId}
+                                       onClick={this.handleClick}>
+                                <p id={stop.stopId}>{stop.name}</p>
+                                <p id={stop.stopId} style={{float: "right", margin: -30, marginRight: 150}}>Raised:
+                                    ${stop.donationsRaisedInDollars} - Still
+                                    missing: ${stop.donationNeeded}</p></li>
+                        }
                     )}
                 </ul>
 
@@ -258,8 +255,9 @@ class DonationPage extends Component {
                     <p className="form-control" ref={this.selectedStop}/>
 
                     <DonationBar
-                        completedPercentage={currentPercentage}
+                        completedPercentage={this.state.completedPercentage}
                         donationRaised={currentTotalDonation}
+                        donationNeeded={this.state.selectedStop.donationNeeded}
                     />
 
                     <label htmlFor="donation-amount">Amount of donation*</label>

@@ -1,16 +1,16 @@
 function BusStopService()
 {
 	var stops = [
-		{ stopId: 1, lat: 33.760262, lng: -84.384706, donationsRaisedInDollars: 0, name: 'Hertz at Portman Blvd' },
-		{ stopId: 2, lat: 33.760138, lng: -84.388043, donationsRaisedInDollars: 0, name: 'Peachtree Center Mall' },
-		{ stopId: 3, lat: 33.757355, lng: -84.386423, donationsRaisedInDollars: 0, name: 'Georgia Pacific' },
-		{ stopId: 4, lat: 33.758648, lng: -84.382754, donationsRaisedInDollars: 0, name: 'Sheraton Atlanta' },
-		{ stopId: 5, lat: 33.755365, lng: -84.384921, donationsRaisedInDollars: 0, name: 'Loudermilk Center' },
-		{ stopId: 6, lat: 33.756887, lng: -84.389417, donationsRaisedInDollars: 0, name: 'Rialto Arts Center' },
-		{ stopId: 7, lat: 33.759215, lng: -84.391719, donationsRaisedInDollars: 0, name: 'Sky View Atlanta' },
-		{ stopId: 8, lat: 33.762046, lng: -84.391708, donationsRaisedInDollars: 0, name: 'Centennial Park' },
-		{ stopId: 9, lat: 33.763004, lng: -84.387041, donationsRaisedInDollars: 0, name: 'Suntrust Plaza' },
-		{ stopId: 10, lat: 33.754661, lng: -84.380101, donationsRaisedInDollars: 0, name: 'Sweet Auburn Market' }
+		{ stopId: 1, lat: 33.760262, lng: -84.384706, donationsRaisedInDollars: 0, donationNeeded: 1200, name: 'Hertz at Portman Blvd' },
+		{ stopId: 2, lat: 33.760138, lng: -84.388043, donationsRaisedInDollars: 0, donationNeeded: 1400, name: 'Peachtree Center Mall' },
+		{ stopId: 3, lat: 33.757355, lng: -84.386423, donationsRaisedInDollars: 0, donationNeeded: 1100, name: 'Georgia Pacific' },
+		{ stopId: 4, lat: 33.758648, lng: -84.382754, donationsRaisedInDollars: 0, donationNeeded: 1700, name: 'Sheraton Atlanta' },
+		{ stopId: 5, lat: 33.755365, lng: -84.384921, donationsRaisedInDollars: 0, donationNeeded: 2200, name: 'Loudermilk Center' },
+		{ stopId: 6, lat: 33.756887, lng: -84.389417, donationsRaisedInDollars: 0, donationNeeded: 3100, name: 'Rialto Arts Center' },
+		{ stopId: 7, lat: 33.759215, lng: -84.391719, donationsRaisedInDollars: 0, donationNeeded: 2500, name: 'Sky View Atlanta' },
+		{ stopId: 8, lat: 33.762046, lng: -84.391708, donationsRaisedInDollars: 0, donationNeeded: 700, name: 'Centennial Park' },
+		{ stopId: 9, lat: 33.763004, lng: -84.387041, donationsRaisedInDollars: 0, donationNeeded: 1900, name: 'Suntrust Plaza' },
+		{ stopId: 10, lat: 33.754661, lng: -84.380101, donationsRaisedInDollars: 0, donationNeeded: 2700, name: 'Sweet Auburn Market' }
 	];
 
 	/**

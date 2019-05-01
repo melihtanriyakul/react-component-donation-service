@@ -3,15 +3,15 @@ import './DonationBar.css'
 
 class DonationBar extends Component {
     render() {
-        return(
+        return (
             <div className="donation-container">
-                <div className="progress progress-striped active" style={{height: 65, marginTop: 10 }}>
+                <div className="progress progress-striped active" style={{height: 65, marginTop: 10}}>
 
                     <p className="alert alert-success raised"><strong>Raised: ${this.props.donationRaised}</strong>
                     </p>
 
                     <p className="alert alert-success goal"><strong>Still missing:
-                        ${(700 - this.props.donationRaised) < 0 ? 0 : (700 - this.props.donationRaised)}</strong>
+                        ${this.props.donationNeeded}</strong>
                     </p>
 
                     <div className="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
@@ -22,4 +22,5 @@ class DonationBar extends Component {
         );
     }
 }
+
 export default DonationBar;
