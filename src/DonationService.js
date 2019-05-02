@@ -19,9 +19,9 @@ class DonationService extends Component {
     render() {
         let currentPage = "";
         if (this.state.donationPage) {
-            currentPage = <DonationPage donate={this.donationDone} busStopService={this.busStopService}/>;
+            currentPage = <DonationPage isDonationDone={this.donationDone} busStopService={this.busStopService}/>;
         } else {
-            currentPage = <ThankYouPage donate={this.donationDone}/>;
+            currentPage = <ThankYouPage isDonationDone={this.donationDone}/>;
         }
         return (
             <div>

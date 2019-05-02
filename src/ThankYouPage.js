@@ -3,7 +3,7 @@ import './ThankYouPage.css';
 
 class ThankYouPage extends Component {
     handleClick = () => {
-        this.props.donate(false);
+        this.props.isDonationDone(false);
     }
 
     render() {

@@ -202,7 +202,7 @@ class DonationPage extends Component {
                 }
             }
             /** Callback function to terminate the component.*/
-            this.props.donate(isDone);
+            this.props.isDonationDone(isDone);
         }
     };
 
