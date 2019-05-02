@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import BusStop from './DonationPage';
+import DonationPage from './DonationPage';
 import ThankYouPage from './ThankYouPage';
 import BusStopService from "./BusStopService";
 
@@ -19,7 +19,7 @@ class DonationService extends Component {
     render() {
         let currentPage = "";
         if (this.state.donationPage) {
-            currentPage = <BusStop donate={this.donationDone} busStopService={this.busStopService}/>;
+            currentPage = <DonationPage donate={this.donationDone} busStopService={this.busStopService}/>;
         } else {
             currentPage = <ThankYouPage donate={this.donationDone}/>;
         }
