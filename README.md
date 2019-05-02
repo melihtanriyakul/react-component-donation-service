@@ -4,7 +4,7 @@ of a public transport infrastructure but one can turn it into any donation page 
 
 You can see how the component works and try it here: http://donation-service.surge.sh/
 
-![Alt text](donationservice.png?raw=true "Title")
+![](donation.gif)
 
 ### Props
 
